@@ -14,10 +14,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var itemBackgroundView: UIView!
     @IBOutlet weak var cellBackgroundView: UIView!    
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var itemPriceLabel: UILabel!
+    
 
 }

@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gdk-HZ-qQL">
             <objects>
-                <navigationController id="FZK-Ai-q1u" sceneMemberID="viewController">
+                <navigationController id="FZK-Ai-q1u" customClass="NavigationController" customModule="EmotiProgect" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VT0-mU-gEH">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -37,21 +37,22 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SYq-Ip-gjv">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mlc-jV-TWl">
-                                    <size key="itemSize" width="320" height="450"/>
+                                    <size key="itemSize" width="320" height="453"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCollectionViewCell" id="NIw-wW-zgC" customClass="HomeCollectionViewCell" customModule="EmotiProgect" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2.5" width="320" height="450"/>
+                                        <rect key="frame" x="0.0" y="1" width="320" height="453"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -69,7 +70,7 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zo5-P8-fTP"/>
                     </view>
                     <navigationItem key="navigationItem" id="cFY-un-HH4"/>
