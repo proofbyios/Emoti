@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Parse
 
 class HomeCollectionViewCell: UICollectionViewCell {
+    
+    var objectId: String!
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -16,5 +19,20 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellBackgroundView: UIView!    
     @IBOutlet weak var itemPriceLabel: UILabel!
     
-
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    //FIXME: - Need to work with button
+    @IBAction func favoriteButtonAction(_ sender: UIButton) {
+        let query = PFQuery(className: "Items")
+        query.getObjectInBackground(withId: objectId) { (object, error) in
+            if object != nil && error == nil {
+                object![kItemIsFavoritFromObgect] = true
+                object!.saveEventually()
+            } else {
+                print("Error to find object")
+            }
+        }
+    }
+    
+    
 }

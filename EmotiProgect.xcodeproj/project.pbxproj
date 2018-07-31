@@ -79,12 +79,12 @@
 		CE0163D42110528B0090646F /* EmotiProgect */ = {
 			isa = PBXGroup;
 			children = (
+				CE0163ED21105AE50090646F /* GlobalScope.swift */,
 				CE0163F1211080CF0090646F /* UIView+Functions.swift */,
 				CE0163D52110528B0090646F /* AppDelegate.swift */,
 				CE0163EF211064FB0090646F /* NavigationController.swift */,
 				CE0163E7211053A20090646F /* HomeViewController.swift */,
 				CE0163E92110542C0090646F /* HomeCollectionViewCell.swift */,
-				CE0163ED21105AE50090646F /* GlobalScope.swift */,
 				CE0163EA2110542C0090646F /* HomeCollectionViewCell.xib */,
 				CE0163D92110528B0090646F /* Main.storyboard */,
 				CE0163DC2110528C0090646F /* Assets.xcassets */,

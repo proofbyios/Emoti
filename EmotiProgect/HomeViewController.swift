@@ -57,6 +57,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! HomeCollectionViewCell
         
+        cell.objectId = itemsArray[indexPath.row].objectId
+        
         cell.itemNameLabel.text = itemsArray[indexPath.row][kItemNameFromObgect] as? String
         cell.itemPriceLabel.text = String(format: "Cтоимость: %@ грн.", self.itemsArray[indexPath.row][kItemPriceFromObgect] as! String)
         

@@ -39,6 +39,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal" title="Добавить в избранное"/>
+                                        <connections>
+                                            <action selector="favoriteButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yYi-sj-uyx"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,6 +68,7 @@
             <size key="customSize" width="258" height="450"/>
             <connections>
                 <outlet property="cellBackgroundView" destination="qHT-X2-w4e" id="lg1-84-4yi"/>
+                <outlet property="favoriteButton" destination="kc5-sp-nfo" id="Gis-sC-wbQ"/>
                 <outlet property="itemBackgroundView" destination="Wgv-4V-SS5" id="yyg-fB-mWV"/>
                 <outlet property="itemImageView" destination="g6a-Il-wqA" id="0YF-qo-Nhq"/>
                 <outlet property="itemNameLabel" destination="iwU-pz-v69" id="Wpd-Xj-x1H"/>
