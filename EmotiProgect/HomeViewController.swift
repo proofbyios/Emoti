@@ -92,13 +92,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if (localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]) != nil {
             let storedArray = localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]
             
+//            if (storedArray?.contains(self.itemsArray[indexPath.row].objectId!))! {
+//                cell.favoriteButton.setTitle("Удалить из избранного", for: .normal)
+//            } else {
+//                cell.favoriteButton.setTitle("Добавить в избранное", for: .normal)
+//            }
+            
             for id in storedArray! {
                 if self.itemsArray[indexPath.row].objectId == id {
                     print(id)
-                    cell.favoriteButton.titleLabel?.text = "Удалить из избранного"
-                    cell.favoriteButton.tag = 1
+                    cell.favoriteButton.setTitle("Удалить из избранного", for: .normal)
                 } else {
-                    cell.favoriteButton.titleLabel?.text = "Добавить в избранное"
+                    cell.favoriteButton.setTitle("Добавить в избранное", for: .normal)
                 }
             }
         }
@@ -107,6 +112,4 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         return cell
     }
-    
-
 }
