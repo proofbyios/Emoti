@@ -21,7 +21,8 @@ let kItemStartFromAgeFromObgect = "itemStartFromAge"
 let kItemForPplFromObgect       = "itemForPpl"
 let kItemValidDateFromObgect    = "itemValidToDate"
 let kItemRaitingFromObgect      = "itemRaiting"
-let kItemIsFavoritFromObgect    = "isFavorit"
+
+let kForUserDefaultsFavorite    = "favorite"
 
 let hostImageUrlAddres = "http://emoti.back4app.io/"
 

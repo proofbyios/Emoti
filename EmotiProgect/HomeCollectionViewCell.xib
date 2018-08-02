@@ -19,6 +19,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-if-3HH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
+                    </imageView>
+                    <visualEffectView opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-iF-dRE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="K63-3k-hEI">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qHT-X2-w4e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -35,7 +47,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc5-sp-nfo">
-                                        <rect key="frame" x="115" y="251" width="148" height="27"/>
+                                        <rect key="frame" x="92" y="251" width="171" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal" title="Добавить в избранное"/>
@@ -44,6 +56,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDQ-cX-rXS">
+                                <rect key="frame" x="46" y="8" width="229" height="296"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6a-Il-wqA">
@@ -64,12 +81,20 @@
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="f5S-if-3HH" firstAttribute="bottom" secondItem="ZTg-uK-7eu" secondAttribute="bottom" id="3am-4G-bdR"/>
+                <constraint firstItem="f5S-if-3HH" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="LAD-71-kqo"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="f5S-if-3HH" secondAttribute="top" id="dKd-nG-3zo"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="f5S-if-3HH" secondAttribute="leading" id="euX-hM-Akr"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="258" height="450"/>
             <connections>
                 <outlet property="cellBackgroundView" destination="qHT-X2-w4e" id="lg1-84-4yi"/>
                 <outlet property="favoriteButton" destination="kc5-sp-nfo" id="Gis-sC-wbQ"/>
+                <outlet property="itemBackgroundImageView" destination="f5S-if-3HH" id="eOh-O5-Hti"/>
                 <outlet property="itemBackgroundView" destination="Wgv-4V-SS5" id="yyg-fB-mWV"/>
+                <outlet property="itemImageShadowsView" destination="CDQ-cX-rXS" id="oLS-7k-CHc"/>
                 <outlet property="itemImageView" destination="g6a-Il-wqA" id="0YF-qo-Nhq"/>
                 <outlet property="itemNameLabel" destination="iwU-pz-v69" id="Wpd-Xj-x1H"/>
                 <outlet property="itemPriceLabel" destination="XEi-9r-Vqd" id="GQ7-jg-8w7"/>

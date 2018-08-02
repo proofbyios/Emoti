@@ -64,15 +64,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let imageName = itemsArray[indexPath.row]["itemImage"] as! String
         cell.itemImageView?.sd_setImage(with: URL(string: hostImageUrlAddres + imageName), completed: { (img, err, cashType, url) in
-            //FIXME: - Use Cash here
-            //self.view.backgroundColor = UIColor.init(patternImage: img!)
-            cell.cellBackgroundView.backgroundColor = UIColor.init(patternImage: img!)
+            
         })
         
-        cell.cellBackgroundView.blurImage()
+        cell.itemBackgroundImageView.sd_setImage(with: URL(string: hostImageUrlAddres + imageName)) { (img, error, cashType, url) in
+            
+        }
+        
+        cell.itemImageShadowsView.cornerRadiuslEffects(cornerRadius: 5.0, borderWidth: 1.0)
+        cell.itemImageShadowsView.shadowEffects(shadowRadius: 5.0)
+        
         cell.itemBackgroundView.cornerRadiuslEffects(cornerRadius: 5.0, borderWidth: 1.0)
         cell.itemImageView.cornerRadiuslEffects(cornerRadius: 5.0, borderWidth: 1.0)
-        cell.itemImageView.shadowEffects(shadowRadius: 5.0)
         
         let reiting = self.itemsArray[indexPath.row][kItemRaitingFromObgect] as! Int
         
@@ -81,6 +84,26 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             imageView.image = UIImage.init(named: "star")
             cell.itemBackgroundView.addSubview(imageView)
         }
+        
+        let localStorage = UserDefaults.standard
+        //localStorage.removeObject(forKey: kForUserDefaultsFavorite)
+        
+        //Вычисляем какая надпись должна быть на кнопке у ячейки
+        if (localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]) != nil {
+            let storedArray = localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]
+            
+            for id in storedArray! {
+                if self.itemsArray[indexPath.row].objectId == id {
+                    print(id)
+                    cell.favoriteButton.titleLabel?.text = "Удалить из избранного"
+                    cell.favoriteButton.tag = 1
+                } else {
+                    cell.favoriteButton.titleLabel?.text = "Добавить в избранное"
+                }
+            }
+        }
+        
+        //print("text = \(String(describing: cell.favoriteButton.titleLabel?.text)) in indexPath.row = \(indexPath.row) ")
         
         return cell
     }

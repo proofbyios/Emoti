@@ -20,9 +20,9 @@ extension UIView {
     func shadowEffects(shadowRadius: CGFloat) {
         self.layer.shadowColor      = UIColor.lightGray.cgColor
         self.layer.shadowRadius     = shadowRadius
-        self.layer.shadowOffset     = CGSize(width:3.0, height: 2.0)
+        self.layer.shadowOffset     = CGSize(width:0.0, height: 5.0)
         self.layer.shadowOpacity    = 1.0
-        self.layer.masksToBounds    = true;
+        self.layer.masksToBounds    = false;
         self.layer.shadowPath       = UIBezierPath.init(rect:self.bounds).cgPath
         self.layer.shouldRasterize  = true
     }
