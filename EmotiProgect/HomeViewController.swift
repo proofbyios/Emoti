@@ -87,6 +87,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let localStorage = UserDefaults.standard
         //localStorage.removeObject(forKey: kForUserDefaultsFavorite)
+        localStorage.synchronize()
         
         //Вычисляем какая надпись должна быть на кнопке у ячейки
         if (localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]) != nil {
