@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Emoti"
+        self.navigationItem.title = "Emoti"
 
         collectionView.register(UINib.init(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         
