@@ -18,6 +18,11 @@
 		CE0163EE21105AE50090646F /* GlobalScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0163ED21105AE50090646F /* GlobalScope.swift */; };
 		CE0163F0211064FB0090646F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0163EF211064FB0090646F /* NavigationController.swift */; };
 		CE0163F2211080CF0090646F /* UIView+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0163F1211080CF0090646F /* UIView+Functions.swift */; };
+		CE26C3492118425900646C04 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C3482118425900646C04 /* CartViewController.swift */; };
+		CE26C34B2118645900646C04 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C34A2118645900646C04 /* AccountViewController.swift */; };
+		CE26C35021197E4300646C04 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C34E21197E4300646C04 /* CartTableViewCell.swift */; };
+		CE26C35121197E4300646C04 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE26C34F21197E4300646C04 /* CartTableViewCell.xib */; };
+		CE26C3972119DE0A00646C04 /* DeteilTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		CE0163ED21105AE50090646F /* GlobalScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalScope.swift; sourceTree = "<group>"; };
 		CE0163EF211064FB0090646F /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CE0163F1211080CF0090646F /* UIView+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Functions.swift"; sourceTree = "<group>"; };
+		CE26C3482118425900646C04 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		CE26C34A2118645900646C04 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		CE26C34E21197E4300646C04 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		CE26C34F21197E4300646C04 /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
+		CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeteilTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +93,12 @@
 				CE0163F1211080CF0090646F /* UIView+Functions.swift */,
 				CE0163D52110528B0090646F /* AppDelegate.swift */,
 				CE0163EF211064FB0090646F /* NavigationController.swift */,
+				CE26C34A2118645900646C04 /* AccountViewController.swift */,
+				CE26C3482118425900646C04 /* CartViewController.swift */,
 				CE0163E7211053A20090646F /* HomeViewController.swift */,
+				CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */,
+				CE26C34E21197E4300646C04 /* CartTableViewCell.swift */,
+				CE26C34F21197E4300646C04 /* CartTableViewCell.xib */,
 				CE0163E92110542C0090646F /* HomeCollectionViewCell.swift */,
 				CE0163EA2110542C0090646F /* HomeCollectionViewCell.xib */,
 				CE0163D92110528B0090646F /* Main.storyboard */,
@@ -163,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE26C35121197E4300646C04 /* CartTableViewCell.xib in Resources */,
 				CE0163E02110528C0090646F /* LaunchScreen.storyboard in Resources */,
 				CE0163DD2110528C0090646F /* Assets.xcassets in Resources */,
 				CE0163DB2110528B0090646F /* Main.storyboard in Resources */,
@@ -225,9 +241,13 @@
 				CE0163D62110528B0090646F /* AppDelegate.swift in Sources */,
 				CE0163E8211053A20090646F /* HomeViewController.swift in Sources */,
 				CE0163F2211080CF0090646F /* UIView+Functions.swift in Sources */,
+				CE26C35021197E4300646C04 /* CartTableViewCell.swift in Sources */,
 				CE0163F0211064FB0090646F /* NavigationController.swift in Sources */,
 				CE0163EB2110542C0090646F /* HomeCollectionViewCell.swift in Sources */,
+				CE26C34B2118645900646C04 /* AccountViewController.swift in Sources */,
 				CE0163EE21105AE50090646F /* GlobalScope.swift in Sources */,
+				CE26C3972119DE0A00646C04 /* DeteilTableViewController.swift in Sources */,
+				CE26C3492118425900646C04 /* CartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

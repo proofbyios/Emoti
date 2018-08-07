@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let applicationId = "Q2JS5hbaXd9X8vgElm1SpTk7iSGTqAIRrs6I4I5S"
         let clientKey = "Q9u3W1CyEDCoxdnb4zZr3YiXERWYmjmd54NCiMKX"
         
+        Parse.enableLocalDatastore()
+        
         let config = ParseClientConfiguration { (conf) in
             conf.clientKey = clientKey
             conf.applicationId = applicationId

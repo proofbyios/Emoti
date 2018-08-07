@@ -38,6 +38,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.allowsMultipleSelection = false
+        
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem.init(title: "О нас", style: .plain, target: self, action: #selector(aboutUs))]
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem.init(image: UIImage.init(named: "cart.png"), style: .plain, target: self, action: #selector(cart))]
+        
         self.navigationItem.title = "Emoti"
 
         collectionView.register(UINib.init(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
@@ -85,32 +91,49 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             cell.itemBackgroundView.addSubview(imageView)
         }
         
-        let localStorage = UserDefaults.standard
-        //localStorage.removeObject(forKey: kForUserDefaultsFavorite)
-        localStorage.synchronize()
-        
-        //Вычисляем какая надпись должна быть на кнопке у ячейки
-        if (localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]) != nil {
-            let storedArray = localStorage.object(forKey: kForUserDefaultsFavorite) as? [String]
-            
-//            if (storedArray?.contains(self.itemsArray[indexPath.row].objectId!))! {
-//                cell.favoriteButton.setTitle("Удалить из избранного", for: .normal)
-//            } else {
-//                cell.favoriteButton.setTitle("Добавить в избранное", for: .normal)
-//            }
-            
-            for id in storedArray! {
-                if self.itemsArray[indexPath.row].objectId == id {
-                    print(id)
-                    cell.favoriteButton.setTitle("Удалить из избранного", for: .normal)
-                } else {
-                    cell.favoriteButton.setTitle("Добавить в избранное", for: .normal)
-                }
-            }
-        }
-        
-        //print("text = \(String(describing: cell.favoriteButton.titleLabel?.text)) in indexPath.row = \(indexPath.row) ")
-        
         return cell
     }
+    
+    //MARK: - UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "deteilVC", sender: nil)
+    }
+    
+    //MARK: - Alert about us
+    @objc func aboutUs() {
+        let alert = UIAlertController.init(title: "О Emoti", message: """
+            Мы компания которая предоставляет покупку эмоций по самой выгодной цене!
+            """, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Cart
+    @objc func cart() {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "cartViewController")
+        
+        viewController.modalPresentationStyle = .popover
+        self.present(viewController, animated: true) {
+            
+        }
+        
+        let popover = UIPopoverPresentationController.init(presentedViewController: self, presenting: viewController)
+        popover.barButtonItem = self.navigationItem.leftBarButtonItem
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "deteilVC" {
+            if self.collectionView.indexPathsForSelectedItems != nil {
+                let indexPath = self.collectionView.indexPathsForSelectedItems![0]
+                let destinationVC = segue.destination as! DeteilTableViewController
+                destinationVC.item = self.itemsArray[indexPath.row]
+            }
+        }
+    }
+    
 }
