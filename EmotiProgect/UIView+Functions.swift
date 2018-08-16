@@ -35,7 +35,25 @@ extension UIView {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
         self.addSubview(blurEffectView)
         self.sendSubview(toBack: blurEffectView)
+    }
+    
+    func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func randomColor() -> UIColor {
+        let r: CGFloat = CGFloat(arc4random() % 256) / CGFloat(255)
+        let g: CGFloat = CGFloat(arc4random() % 256) / CGFloat(255)
+        let b: CGFloat = CGFloat(arc4random() % 256) / CGFloat(255)
+        
+        return UIColor.init(red: r, green: g, blue: b, alpha: 1.0)
     }
     
 }

@@ -9,6 +9,19 @@
 import UIKit
 import Parse
 
+public enum UIButtonBorderSide {
+    case Top, Bottom, Left, Right
+}
+
+enum ButtonCartTitles: String {
+    case add    = "Добавить в корзину"
+    case delete = "Удалить из корзины"
+    
+    var opposite: ButtonCartTitles {
+        return self.opposite == .add ? .delete : .add
+    }
+}
+
 let kItemNameFromObgect         = "itemName"
 let kItemDescriptionFromObgect  = "itemDescription"
 let kItemVideoFromObgect        = "itemVideo"
@@ -42,7 +55,6 @@ class Cart {
         query.getObjectInBackground(withId: itemId) { (item, error) in
             if error == nil {
                 itemsInCartArray.insert(item!, at: 0)
-                
             }
         }
     }
@@ -67,4 +79,48 @@ class Cart {
     }
     
 }
+
+extension UIApplication {
+    
+    var screenShot: UIImage?  {
+        return keyWindow?.layer.screenShot
+    }
+}
+
+extension CALayer {
+    
+    var screenShot: UIImage?  {
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
+        if let context = UIGraphicsGetCurrentContext() {
+            render(in: context)
+            let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return screenshot
+        }
+        return nil
+    }
+}
+
+extension UIButton {
+    
+    public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
+        let border = CALayer()
+        border.backgroundColor = color.cgColor
+        
+        switch side {
+        case .Top:
+            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
+        case .Bottom:
+            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width)
+        case .Left:
+            border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
+        case .Right:
+            border.frame = CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height)
+        }
+        
+        self.layer.addSublayer(border)
+    }
+}
+
 

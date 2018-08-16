@@ -18,23 +18,8 @@ import Parse
 //    }
 //}
 
-enum ButtonFavoriteTitles: String {
-    case add    = "Добавить в избранное"
-    case delete = "Удалить из избранного"
-    
-    var opposite: ButtonFavoriteTitles {
-        return self.opposite == .add ? .delete : .add
-    }
-}
 
-enum ButtonCartTitles: String {
-    case add    = "Добавить в корзину"
-    case delete = "Удалить из корзины"
-    
-    var opposite: ButtonCartTitles {
-        return self.opposite == .add ? .delete : .add
-    }
-}
+
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
@@ -59,7 +44,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             self.cartButton.setTitle(ButtonCartTitles.add.rawValue, for: .normal)
         }
     }
-    
+
     
 }
 

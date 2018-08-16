@@ -23,6 +23,11 @@
 		CE26C35021197E4300646C04 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C34E21197E4300646C04 /* CartTableViewCell.swift */; };
 		CE26C35121197E4300646C04 /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE26C34F21197E4300646C04 /* CartTableViewCell.xib */; };
 		CE26C3972119DE0A00646C04 /* DeteilTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */; };
+		CE7D669121255DCC0056E0BD /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D669021255DCC0056E0BD /* CommentsTableViewController.swift */; };
+		CE7D6694212563600056E0BD /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D6692212563600056E0BD /* CommentTableViewCell.swift */; };
+		CE7D6695212563600056E0BD /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7D6693212563600056E0BD /* CommentTableViewCell.xib */; };
+		CE7D6697212573240056E0BD /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D6696212573240056E0BD /* CustomAlertView.swift */; };
+		CE7D669A212573700056E0BD /* CustomAlertViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D6699212573700056E0BD /* CustomAlertViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		CE26C34E21197E4300646C04 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		CE26C34F21197E4300646C04 /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
 		CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeteilTableViewController.swift; sourceTree = "<group>"; };
+		CE7D669021255DCC0056E0BD /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		CE7D6692212563600056E0BD /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		CE7D6693212563600056E0BD /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		CE7D6696212573240056E0BD /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		CE7D6699212573700056E0BD /* CustomAlertViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,10 @@
 				CE26C3482118425900646C04 /* CartViewController.swift */,
 				CE0163E7211053A20090646F /* HomeViewController.swift */,
 				CE26C3962119DE0A00646C04 /* DeteilTableViewController.swift */,
+				CE7D66982125733B0056E0BD /* CostomAlert */,
+				CE7D669021255DCC0056E0BD /* CommentsTableViewController.swift */,
+				CE7D6692212563600056E0BD /* CommentTableViewCell.swift */,
+				CE7D6693212563600056E0BD /* CommentTableViewCell.xib */,
 				CE26C34E21197E4300646C04 /* CartTableViewCell.swift */,
 				CE26C34F21197E4300646C04 /* CartTableViewCell.xib */,
 				CE0163E92110542C0090646F /* HomeCollectionViewCell.swift */,
@@ -107,6 +121,15 @@
 				CE0163E12110528C0090646F /* Info.plist */,
 			);
 			path = EmotiProgect;
+			sourceTree = "<group>";
+		};
+		CE7D66982125733B0056E0BD /* CostomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				CE7D6696212573240056E0BD /* CustomAlertView.swift */,
+				CE7D6699212573700056E0BD /* CustomAlertViewDelegate.swift */,
+			);
+			path = CostomAlert;
 			sourceTree = "<group>";
 		};
 		EDC2449292D827ED6308BBB6 /* Pods */ = {
@@ -179,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE26C35121197E4300646C04 /* CartTableViewCell.xib in Resources */,
+				CE7D6695212563600056E0BD /* CommentTableViewCell.xib in Resources */,
 				CE0163E02110528C0090646F /* LaunchScreen.storyboard in Resources */,
 				CE0163DD2110528C0090646F /* Assets.xcassets in Resources */,
 				CE0163DB2110528B0090646F /* Main.storyboard in Resources */,
@@ -238,14 +262,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7D669121255DCC0056E0BD /* CommentsTableViewController.swift in Sources */,
+				CE7D6697212573240056E0BD /* CustomAlertView.swift in Sources */,
 				CE0163D62110528B0090646F /* AppDelegate.swift in Sources */,
 				CE0163E8211053A20090646F /* HomeViewController.swift in Sources */,
 				CE0163F2211080CF0090646F /* UIView+Functions.swift in Sources */,
 				CE26C35021197E4300646C04 /* CartTableViewCell.swift in Sources */,
 				CE0163F0211064FB0090646F /* NavigationController.swift in Sources */,
 				CE0163EB2110542C0090646F /* HomeCollectionViewCell.swift in Sources */,
+				CE7D6694212563600056E0BD /* CommentTableViewCell.swift in Sources */,
 				CE26C34B2118645900646C04 /* AccountViewController.swift in Sources */,
 				CE0163EE21105AE50090646F /* GlobalScope.swift in Sources */,
+				CE7D669A212573700056E0BD /* CustomAlertViewDelegate.swift in Sources */,
 				CE26C3972119DE0A00646C04 /* DeteilTableViewController.swift in Sources */,
 				CE26C3492118425900646C04 /* CartViewController.swift in Sources */,
 			);
