@@ -90,9 +90,37 @@ extension DeteilTableViewController: CustomAlertViewDelegate {
     func okButtonTapped(selectedOption: String, textFieldValue: String) {
         print("okButtonTapped with \(selectedOption) option selected")
         print("TextField has value: \(textFieldValue)")
+        let newComment = PFObject(className: "Comment")
+        
+        if let user = PFUser.current(), let userName = user.username {
+            newComment["autorName"] = userName
+            newComment["autor"]     = user
+            newComment["text"]      = textFieldValue.isEmpty ? "Все прошло на ура! Хочу еще!" : textFieldValue
+            newComment["item"]      = item
+            newComment["rating"]    = Int(selectedOption)
+        }
+        newComment.saveEventually { (flag, error) in
+            if error == nil {
+                let alertController = UIAlertController.init(title: "Успешно", message: "Ваш комментарий был добавлен", preferredStyle: .alert)
+                let alertOkAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                    //code
+                })
+                
+                alertController.addAction(alertOkAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                let alertController = UIAlertController.init(title: "Ошибка", message: "Ваш комментарий не был добавлен", preferredStyle: .alert)
+                let alertOkAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                    //code
+                })
+                
+                alertController.addAction(alertOkAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
     }
     
     func cancelButtonTapped() {
-        print("cancelButtonTapped")
+        //print("cancelButtonTapped")
     }
 }

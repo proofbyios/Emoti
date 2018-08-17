@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 let identifier = "cartCell"
 
@@ -17,8 +18,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var totallabel: UILabel!
     @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,8 +60,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             totallabel.text         = "Корзина пуста"
             confirmButton.isHidden  = true
             clearButton.isHidden    = true
-            nameTextField.isHidden  = true
-            phoneTextField.isHidden = true
             
         }
         
@@ -100,80 +97,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         return false
     }
     
-    //MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if nameTextField.isFirstResponder {
-            phoneTextField.becomeFirstResponder()
-        } else {
-            phoneTextField.resignFirstResponder()
-        }
-        
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == nameTextField {
-            let charSet = NSCharacterSet.letters
-            
-            if let _ = string.rangeOfCharacter(from: charSet) {
-                return true
-            } else {
-                return false
-            }
-        }
-        
-        if textField == phoneTextField {
-            let charSet = NSCharacterSet.decimalDigits
-            
-            if let _ = string.rangeOfCharacter(from: charSet) {
-                var fullString = textField.text ?? ""
-                fullString.append(string)
-                if range.length == 1 {
-                    textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: true)
-                } else {
-                    textField.text = format(phoneNumber: fullString)
-                }
-                return false
-                
-                //return true
-            } else {
-                return false
-            }
-        }
-        
-        
-        return true
-    }
-    
-    func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
-        guard !phoneNumber.isEmpty else { return "" }
-        guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
-        let r = NSString(string: phoneNumber).range(of: phoneNumber)
-        var number = regex.stringByReplacingMatches(in: phoneNumber, options: .init(rawValue: 0), range: r, withTemplate: "")
-        
-        if number.count > 10 {
-            let tenthDigitIndex = number.index(number.startIndex, offsetBy: 10)
-            number = String(number[number.startIndex..<tenthDigitIndex])
-        }
-        
-        if shouldRemoveLastDigit {
-            let end = number.index(number.startIndex, offsetBy: number.count-1)
-            number = String(number[number.startIndex..<end])
-        }
-        
-        if number.count < 7 {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{3})(\\d+)", with: "($1) $2", options: .regularExpression, range: range)
-            
-        } else {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        }
-        
-        return number
-    }
 
     @IBAction func closeButtonAction(_ sender: UIButton) {
         self.dismiss(animated: true) {
@@ -181,7 +104,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func goToOrderConfirm(_ sender: UIButton) {
-        
+        if PFUser.current()?.username == nil {
+            login()
+        }
     }
     
     
@@ -191,10 +116,26 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         totallabel.text         = "Корзина пуста"
         confirmButton.isHidden  = true
         clearButton.isHidden    = true
-        nameTextField.isHidden  = true
-        phoneTextField.isHidden = true
     }
         
+    func login() {
+        let loginVC = PFLogInViewController()
+        let signUp = PFSignUpViewController()
+        signUp.delegate = self
+        loginVC.delegate = self
+        present(loginVC, animated: true, completion: nil)
+    }
     
-    
+}
+
+extension CartViewController: PFLogInViewControllerDelegate {
+    func log(_ logInController: PFLogInViewController, didLogIn user: PFUser) {
+        logInController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension CartViewController: PFSignUpViewControllerDelegate {
+    func signUpViewController(_ signUpController: PFSignUpViewController, didSignUp user: PFUser) {
+        signUpController.dismiss(animated: true, completion: nil)
+    }
 }

@@ -8,12 +8,31 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class CommentsTableViewController: UITableViewController {
     
     let identifier = "comCell"
+    var commentsArray = [PFObject]()
     
     var item: PFObject!
+    
+    override func loadView() {
+        super.loadView()
+        let query = PFQuery(className: "Comment")
+        query.fromLocalDatastore()
+        query.whereKey("item", equalTo: self.item)
+        query.findObjectsInBackground { (coments, error) in
+            if error == nil {
+                print("Comments = \(String(describing: coments!))")
+                self.commentsArray = coments!
+                self.tableView.reloadData()
+            } else {
+                print("Error with text \(String(describing: error))")
+            }
+        }
+        print(self.commentsArray)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +51,7 @@ class CommentsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 1
+        return commentsArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

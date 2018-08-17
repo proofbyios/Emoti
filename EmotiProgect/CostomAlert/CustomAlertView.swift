@@ -10,7 +10,6 @@ import UIKit
 
 class CustomAlertView: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var alertTextField: UITextField!
     @IBOutlet weak var alertView: UIView!
@@ -19,7 +18,7 @@ class CustomAlertView: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var delegate: CustomAlertViewDelegate?
-    var selectedOption = "First"
+    var selectedOption = "5"
     let alertViewGrayColor = UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
     
     override func viewDidLoad() {
@@ -31,6 +30,8 @@ class CustomAlertView: UIViewController {
         super.viewWillAppear(animated)
         setupView()
         animateView()
+        
+        segmentedControl.selectedSegmentIndex = 4
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,12 +71,19 @@ class CustomAlertView: UIViewController {
     @IBAction func onTapSegmentedControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            print("First option")
-            selectedOption = "First"
+            selectedOption = "1"
             break
         case 1:
-            print("Second option")
-            selectedOption = "Second"
+            selectedOption = "2"
+            break
+        case 2:
+            selectedOption = "3"
+            break
+        case 3:
+            selectedOption = "4"
+            break
+        case 4:
+            selectedOption = "5"
             break
         default:
             break
