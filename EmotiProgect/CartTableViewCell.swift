@@ -14,5 +14,4 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var cellItemNameLabel: UILabel!
     @IBOutlet weak var cellItemPriceLabel: UILabel!
     
-    
 }

@@ -12,7 +12,5 @@ class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var autorNameLabel: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
-    @IBOutlet weak var starsLabel: UILabel!
-    
     
 }
