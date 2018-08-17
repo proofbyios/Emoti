@@ -43,6 +43,17 @@ class DeteilTableViewController: UITableViewController {
             cellView.addSubview(imageView)
         }
         
+        let query = PFQuery(className: "Comment")
+        //query.fromLocalDatastore()
+        query.whereKey("item", equalTo: self.item)
+        query.findObjectsInBackground { (coments, error) in
+            if error == nil {
+                self.itemCommentsButton.setTitle("Комментарий (\(coments!.count))", for: .normal)
+            } else {
+                print("Error with text \(String(describing: error))")
+            }
+        }
+        
     }
     
     //MARK: - Cart

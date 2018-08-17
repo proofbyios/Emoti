@@ -40,6 +40,9 @@ class CommentsTableViewController: UITableViewController {
 
         self.navigationItem.title = item[kItemNameFromObgect] as? String
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
+        
     }
     
     //MARK: - Update rating
@@ -53,7 +56,10 @@ class CommentsTableViewController: UITableViewController {
             count += 1
         }
         
-        let raiting = sumRaiting / count
+        var raiting = 0
+        if count > 0 {
+            raiting = sumRaiting / count
+        }
         
         let query = PFQuery(className: "Items")
         query.getObjectInBackground(withId: item.objectId!) { (object, error) in
@@ -85,7 +91,7 @@ class CommentsTableViewController: UITableViewController {
         cell.commentTextLabel.text  = commentsArray[indexPath.row]["text"] as? String
         
         for i in 0..<(commentsArray[indexPath.row]["rating"] as! Int) {
-            let imageView = UIImageView.init(frame: CGRect.init(x: CGFloat(7 + (9 * (i + 1))), y: CGFloat((cell.contentView.bounds.height) - 42), width: 9.0, height: 9.0))
+            let imageView = UIImageView.init(frame: CGRect.init(x: CGFloat(7 + (9 * (i + 1))), y: CGFloat((cell.contentView.bounds.height) - 40), width: 9.0, height: 9.0))
             imageView.image = UIImage.init(named: "star")
             cell.contentView.addSubview(imageView)
         }
@@ -94,10 +100,6 @@ class CommentsTableViewController: UITableViewController {
     }
 
     //MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(70)
-    }
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
