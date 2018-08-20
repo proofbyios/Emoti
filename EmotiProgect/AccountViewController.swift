@@ -34,15 +34,21 @@ class AccountViewController: UIViewController {
         
         self.imageView.isUserInteractionEnabled = true
         self.imageView.addGestureRecognizer(tapHandler)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if PFUser.current()?.username == nil {
             logInLogOutButton.setTitle(LoginStatusText.logIn.rawValue, for: .normal)
+            
+            self.imageView.isUserInteractionEnabled = false
         } else {
             nameLabel.isHidden = false
             nameLabel.text = PFUser.current()?.username
             logInLogOutButton.setTitle(LoginStatusText.logOut.rawValue, for: .normal)
+            
+             self.imageView.isUserInteractionEnabled = true
         }
     }
     
@@ -57,6 +63,8 @@ class AccountViewController: UIViewController {
             PFUser.logOutInBackground()
             self.nameLabel.text = PFUser.current()?.username
             logInLogOutButton.setTitle(LoginStatusText.logIn.rawValue, for: .normal)
+            
+            self.view.layoutIfNeeded()
         } else {
             nameLabel.isHidden = true
             let loginVC = PFLogInViewController()
@@ -65,8 +73,29 @@ class AccountViewController: UIViewController {
             let image = UIImageView(image: UIImage.init(named: "EMOTI"))
             loginVC.logInView?.logo?.addSubview(image)
             present(loginVC, animated: true, completion: nil)
+            
+            self.view.layoutIfNeeded()
         }
     }
+}
+
+func saveImageToBase(image: UIImage) {
+    let imagedata = UIImagePNGRepresentation(image)
+    let photo = PFFile(name: "avatar.png", data: imagedata!)
+    
+    let query = PFQuery(className: "User")
+    query.getObjectInBackground(withId: "chBYWj33FD") { (user, error) in
+        if error == nil {
+            let acl = PFACL.init(user: user! as! PFUser)
+            acl.setWriteAccess(true, for: user as! PFUser)
+            user!.acl = acl
+            user!["photo"] = photo
+            user!.saveEventually()
+        } else {
+            print(error!)
+        }
+    }
+    
 }
 
 extension AccountViewController: PFLogInViewControllerDelegate {
@@ -88,6 +117,8 @@ extension AccountViewController: UIImagePickerControllerDelegate {
         let img = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = img
         picker.dismiss(animated: true, completion: nil)
+        
+        saveImageToBase(image: img)
     }
 }
 
