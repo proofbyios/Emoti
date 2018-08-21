@@ -7,7 +7,9 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +41,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SYq-Ip-gjv">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mlc-jV-TWl">
                                     <size key="itemSize" width="320" height="454"/>
@@ -50,12 +52,13 @@
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCollectionViewCell" id="NIw-wW-zgC" customClass="HomeCollectionViewCell" customModule="EmotiProgect" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.5" width="320" height="454"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="customSize" width="320" height="454"/>
                                         <connections>
                                             <segue destination="4pr-ZO-hHe" kind="show" identifier="deteilVC" id="nCE-IT-EJp"/>
                                         </connections>
@@ -316,34 +319,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U69-8a-CxJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="boy-512" translatesAutoresizingMaskIntoConstraints="NO" id="bo0-vq-MHg">
-                                        <rect key="frame" x="96" y="28" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adK-ei-NHJ">
-                                        <rect key="frame" x="8" y="175" width="304" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fb-FM-5Zy">
-                                        <rect key="frame" x="110" y="433" width="101" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Log out"/>
-                                        <connections>
-                                            <action selector="logInLogOutAction:" destination="ngL-VJ-5h0" eventType="touchUpInside" id="2TB-Lb-G9h"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boy-512" translatesAutoresizingMaskIntoConstraints="NO" id="bo0-vq-MHg">
+                                <rect key="frame" x="80" y="20" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="170" id="AVg-oN-pQ9"/>
+                                    <constraint firstAttribute="width" secondItem="bo0-vq-MHg" secondAttribute="height" multiplier="1:1" id="jRH-E9-4MZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adK-ei-NHJ">
+                                <rect key="frame" x="16" y="197" width="288" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KrE-SE-kN5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fb-FM-5Zy">
+                                <rect key="frame" x="134" y="442" width="52" height="30"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="logInLogOutAction:" destination="ngL-VJ-5h0" eventType="touchUpInside" id="2TB-Lb-G9h"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2Fb-FM-5Zy" firstAttribute="centerX" secondItem="bo0-vq-MHg" secondAttribute="centerX" id="2us-Kp-fWd"/>
+                            <constraint firstItem="adK-ei-NHJ" firstAttribute="centerX" secondItem="bo0-vq-MHg" secondAttribute="centerX" id="3QR-X0-KO7"/>
+                            <constraint firstItem="adK-ei-NHJ" firstAttribute="top" secondItem="bo0-vq-MHg" secondAttribute="bottom" constant="17" id="KJB-Hw-ug6"/>
+                            <constraint firstItem="bo0-vq-MHg" firstAttribute="top" secondItem="NsE-No-hiH" secondAttribute="top" id="Q7Z-an-8WH"/>
+                            <constraint firstItem="bo0-vq-MHg" firstAttribute="centerX" secondItem="eff-DE-7M8" secondAttribute="centerX" id="Xf9-p9-id2"/>
+                            <constraint firstItem="bo0-vq-MHg" firstAttribute="width" relation="lessThanOrEqual" secondItem="eff-DE-7M8" secondAttribute="width" multiplier="0.5" id="sSU-bL-FPb"/>
+                            <constraint firstItem="adK-ei-NHJ" firstAttribute="leading" secondItem="NsE-No-hiH" secondAttribute="leading" constant="16" id="wZN-BK-TTo"/>
+                            <constraint firstItem="NsE-No-hiH" firstAttribute="bottom" secondItem="2Fb-FM-5Zy" secondAttribute="bottom" constant="47" id="zZq-Vh-ohh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NsE-No-hiH"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Аккаунт" image="icons8-resume_website_filled" id="jba-nW-Yan"/>
@@ -355,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ky7-Kg-5bU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418.125" y="1067.9577464788733"/>
+            <point key="canvasLocation" x="-420" y="1065.8450704225352"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="41T-Mm-WoV">

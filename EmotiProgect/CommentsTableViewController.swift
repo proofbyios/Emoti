@@ -90,6 +90,27 @@ class CommentsTableViewController: UITableViewController {
         cell.autorNameLabel.text    = commentsArray[indexPath.row]["autorName"] as? String
         cell.commentTextLabel.text  = commentsArray[indexPath.row]["text"] as? String
         
+        let query = PFQuery(className: "_User")
+        
+        let user = (commentsArray[indexPath.row]["autor"])!
+        query.getObjectInBackground(withId: ((user as! PFUser).objectId)!) { (user, error) in
+            if error == nil {
+                let userImageFile = user!["avatar"] as! PFFile
+                userImageFile.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        if let imageData = imageData {
+                            let image = UIImage(data:imageData)
+                            cell.avatarImage.image = image!
+                        }
+                    } else {
+                        cell.avatarImage.image = UIImage(named: "boy-512")
+                    }
+                })
+            }
+        }
+        
+        cell.avatarImage.cornerRadiuslEffects(cornerRadius: 18, borderWidth: 1)
+        
         for i in 0..<(commentsArray[indexPath.row]["rating"] as! Int) {
             let imageView = UIImageView.init(frame: CGRect.init(x: CGFloat(7 + (9 * (i + 1))), y: CGFloat((cell.contentView.bounds.height) - 40), width: 9.0, height: 9.0))
             imageView.image = UIImage.init(named: "star")
