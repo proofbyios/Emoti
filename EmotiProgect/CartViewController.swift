@@ -47,6 +47,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         self.totallabel.text = "Всего в корзине \(itemsInCartArray.count) шт. На сумму \(sum) грн."
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,10 +59,24 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.sendSubview(toBack: backgroundImageView)
         
         if itemsInCartArray.count == 0 {
-            totallabel.text         = "Корзина пуста"
-            confirmButton.isHidden  = true
-            clearButton.isHidden    = true
-            
+            totallabel.text             = "Корзина пуста"
+            confirmButton.isHidden      = true
+            clearButton.isHidden        = true
+            phoneTextField.isHidden     = true
+        }
+        
+        if PFUser.current()?.username != nil {
+            let query = PFQuery(className: "_User")
+            query.getObjectInBackground(withId: (PFUser.current()?.objectId!)!) { (user, error) in
+                if error == nil {
+                    let phone = user!["phone"] as! String
+                    if phone.isEmpty {
+                        self.phoneTextField.isHidden = false
+                    } else {
+                        self.phoneTextField.isHidden = true
+                    }
+                }
+            }
         }
         
     }
@@ -107,6 +122,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func goToOrderConfirm(_ sender: UIButton) {
         if PFUser.current()?.username == nil {
             login()
+        } else {
+            let query = PFQuery(className: "_User")
+            query.getObjectInBackground(withId: (PFUser.current()?.objectId!)!) { (user, error) in
+                if error == nil {
+                    user!["phone"] = self.phoneTextField.text
+                    user!.saveInBackground()
+                }
+            }
         }
     }
     
@@ -114,9 +137,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func clearCartAction(_ sender: UIButton) {
         itemsInCartArray.removeAll()
         tableView.reloadData()
-        totallabel.text         = "Корзина пуста"
-        confirmButton.isHidden  = true
-        clearButton.isHidden    = true
+        totallabel.text             = "Корзина пуста"
+        confirmButton.isHidden      = true
+        clearButton.isHidden        = true
+        phoneTextField.isHidden     = true
+        
     }
         
     func login() {
@@ -147,7 +172,7 @@ extension CartViewController: UITextFieldDelegate {
         let lettersSet = NSCharacterSet.letters
         let rangeResult = string.rangeOfCharacter(from: lettersSet)
         
-        if let result = rangeResult {
+        if rangeResult != nil {
             return false
         }
         
@@ -159,6 +184,14 @@ extension CartViewController: UITextFieldDelegate {
             textField.text = format(phoneNumber: fullString)
         }
         return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == phoneTextField {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 }
 

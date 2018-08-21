@@ -35,7 +35,23 @@ class AccountViewController: UIViewController {
         self.imageView.isUserInteractionEnabled = true
         self.imageView.addGestureRecognizer(tapHandler)
         
-        
+        if PFUser.current()?.username != nil {
+            let query = PFQuery(className: "_User")
+            query.getObjectInBackground(withId: (PFUser.current()?.objectId!)!) { (user, error) in
+                if error == nil {
+                    let userImageFile = user!["avatar"] as! PFFile
+                    userImageFile.getDataInBackground(block: { (imageData, error) in
+                        if error == nil {
+                            if let imageData = imageData {
+                                let image = UIImage(data:imageData)
+                                self.imageView.image = image!
+                                self.view.layoutIfNeeded()
+                            }
+                        }
+                    })
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +66,7 @@ class AccountViewController: UIViewController {
             
              self.imageView.isUserInteractionEnabled = true
         }
+    
     }
     
     @objc func tapOnImage(_ sender: UITapGestureRecognizer) {
@@ -63,6 +80,8 @@ class AccountViewController: UIViewController {
             PFUser.logOutInBackground()
             self.nameLabel.text = PFUser.current()?.username
             logInLogOutButton.setTitle(LoginStatusText.logIn.rawValue, for: .normal)
+            
+            self.imageView.image = UIImage(named: "boy-512")
             
             self.view.layoutIfNeeded()
         } else {
@@ -80,28 +99,47 @@ class AccountViewController: UIViewController {
 }
 
 func saveImageToBase(image: UIImage) {
-    let imagedata = UIImagePNGRepresentation(image)
-    let photo = PFFile(name: "avatar.png", data: imagedata!)
-    
-    let query = PFQuery(className: "User")
-    query.getObjectInBackground(withId: "chBYWj33FD") { (user, error) in
+    let imagedata: Data = UIImageJPEGRepresentation(image, 0)!
+    let photo: PFFile = PFFile(name: "avatar.jpg", data: imagedata as Data)!
+    photo.saveInBackground { (flag, error) in
         if error == nil {
-            let acl = PFACL.init(user: user! as! PFUser)
-            acl.setWriteAccess(true, for: user as! PFUser)
-            user!.acl = acl
-            user!["photo"] = photo
-            user!.saveEventually()
-        } else {
-            print(error!)
+            if PFUser.current()?.username != nil {
+                let query = PFQuery(className: "_User")
+                query.getObjectInBackground(withId: (PFUser.current()?.objectId!)!) { (user, error) in
+                    if error == nil {
+                        user?.setObject(photo, forKey: "avatar")
+                        user?.saveInBackground()
+                    }
+                }
+            }
         }
     }
-    
 }
+
+
 
 extension AccountViewController: PFLogInViewControllerDelegate {
     func log(_ logInController: PFLogInViewController, didLogIn user: PFUser) {
         logInController.dismiss(animated: true) {
            // code
+        }
+        
+        if PFUser.current()?.username != nil {
+            let query = PFQuery(className: "_User")
+            query.getObjectInBackground(withId: (PFUser.current()?.objectId!)!) { (user, error) in
+                if error == nil {
+                    let userImageFile = user!["avatar"] as! PFFile
+                    userImageFile.getDataInBackground(block: { (imageData, error) in
+                        if error == nil {
+                            if let imageData = imageData {
+                                let image = UIImage(data:imageData)
+                                self.imageView.image = image!
+                                self.view.layoutIfNeeded()
+                            }
+                        }
+                    })
+                }
+            }
         }
     }
 }
