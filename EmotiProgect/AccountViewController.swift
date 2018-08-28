@@ -28,7 +28,7 @@ class AccountViewController: UIViewController {
             nameLabel.text = PFUser.current()?.username
         }
         
-        imageView.cornerRadiuslEffects(cornerRadius: 64, borderWidth: 1)
+        imageView.cornerRadiuslEffects(cornerRadius: 77, borderWidth: 1)
         
         let tapHandler = UITapGestureRecognizer.init(target: self, action: #selector(AccountViewController.tapOnImage(_:)))
         
@@ -115,7 +115,6 @@ func saveImageToBase(image: UIImage) {
         }
     }
 }
-
 
 
 extension AccountViewController: PFLogInViewControllerDelegate {
